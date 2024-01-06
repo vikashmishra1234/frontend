@@ -4,6 +4,7 @@ import React, { useContext, useState } from 'react'
 import Formdialog from '../dialog/Formdialog'
 import ContextState from '../context/ContextState'
 import Context from '../context/Context';
+import { Outlet, useNavigate } from 'react-router-dom'
 
 
 const Nav = styled(Tabs)`
@@ -18,11 +19,29 @@ const NavContainer = styled(Box)`
 const Navbar = () => {
 
     const a = useContext(Context);
+    const [value,setValue]=useState();
+    const Navigate = useNavigate();
 
     
     const handleClick = ()=>{
         
       a.setformOpened(true);
+    }
+
+    const handleNavigate = ()=>{
+        Navigate('/home/me')
+    }
+    const handleERP = ()=>{
+        Navigate('/home/erp')
+    }
+    const handleCS = ()=>{
+        Navigate('/home/cs')
+    }
+    const handleEC = ()=>{
+        Navigate('/home/ec')
+    }
+    const handleEE = ()=>{
+        Navigate('/home/ee')
     }
   return (
     <>
@@ -32,11 +51,12 @@ const Navbar = () => {
         <Toolbar >
             <Typography variant='h5' sx={{flexGrow:1}}>BSA college</Typography>
 
-            <Nav textColor='inherit'>
-                <Tab label = 'ME'></Tab>
-                <Tab label = 'CS'></Tab>
-                <Tab label = 'EC'></Tab>
-                <Tab label = 'EE'></Tab>
+            <Nav value={value}onChange={(e,val)=>{setValue(val)}} >
+                {/* <Button onClick={handleNavigate} >ME</Button>
+                <Button onClick={handleCS}   >CS</Button>
+                <Button onClick={handleEC}  >EC</Button>
+                <Button onClick={handleEE}   >EE</Button> */}
+                <Tab label = 'ERP' onClick={handleERP}/>
             </Nav>
             <Box>
                 <Button variant='contained' onClick={handleClick}>Add student</Button>
@@ -50,8 +70,10 @@ const Navbar = () => {
     {
         a.formOpened?<Formdialog open={a.formOpened}/>:''
     }
+    <Outlet/>
     </>
   )
 }
 
 export default Navbar
+

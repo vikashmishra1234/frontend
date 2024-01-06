@@ -32,7 +32,7 @@ const Formdialog = (props) => {
 
 
     const [close, setClose] = React.useState(false);
-    const [strudentInfo,setStudentInfo]= React.useState({name:'',rollno:'',email:'',year:'',brach:'',section:''})
+    const [strudentInfo,setStudentInfo]= React.useState({name:'',rollno:'',email:'',year:'',branch:'',section:''})
 
  
   
